@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/mazyaryousefinia/github-user-activity/internal/activity"
 	"github.com/spf13/cobra"
 )
 
@@ -23,5 +24,14 @@ func DisplayActivity(args []string) error {
 	if len(args) != 1 {
 		return fmt.Errorf("please add username")
 	}
-	return fmt.Errorf(args[0])
+
+	username := args[0]
+
+	activities, err := activity.FetchGithubActivity(username)
+
+	if err != nil {
+		return err
+	}
+
+	return activity.ShowActivities(activities)
 }

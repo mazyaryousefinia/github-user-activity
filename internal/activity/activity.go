@@ -31,7 +31,7 @@ type Commits struct {
 }
 
 func FetchGithubActivity(username string) ([]GithubActivity, error) {
-	response, err := http.Get(fmt.Sprintf("https://api.github.com/users/%/events", username))
+	response, err := http.Get(fmt.Sprintf("https://api.github.com/users/%s/events", username))
 
 	if err != nil {
 		return nil, err
